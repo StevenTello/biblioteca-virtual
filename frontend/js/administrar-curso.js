@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!user || !user.id) {
         alert("⚠️ Debes iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -345,7 +345,7 @@ async function eliminarModulo(moduloId) {
 /* 📌 Cerrar sesión */
 function logout() {
     localStorage.clear();
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 document.getElementById("logout-btn").addEventListener("click", logout);

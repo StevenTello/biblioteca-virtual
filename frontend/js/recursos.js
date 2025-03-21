@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || !user.id) {
         alert("⚠️ Debes iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -112,7 +112,7 @@ function extraerVideoID(url) {
 // Cerrar sesión
 function logout() {
     localStorage.clear();
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // Agregar evento al botón de cerrar sesión

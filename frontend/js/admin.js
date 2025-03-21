@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || user.rol !== "admin") {
         alert("⚠️ No tienes permisos para acceder.");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -48,15 +48,13 @@ function abrirCurso(cursoId) {
 
     if (!user) {
         alert("⚠️ Debes iniciar sesión primero.");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
     // 📌 Todos los usuarios, incluyendo admin, deben ir a curso.html
     window.location.href = `curso.html?id=${cursoId}`;
 }
-
-
 
 
 // Función para cerrar sesión

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
     if (!user || !user.id) {
         alert("⚠️ Debes iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
         
@@ -96,3 +96,17 @@ async function agregarContenido() {
         console.error("❌ Error al agregar contenido:", error);
     }
 }
+
+// Cerrar sesión
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+// Agregar evento al botón de cerrar sesión
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutButton = document.getElementById("logout-btn");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", logout);
+    }
+});

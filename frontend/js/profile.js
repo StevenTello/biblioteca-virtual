@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!user || !user.id) {
         alert("⚠️ Debes iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -162,8 +162,16 @@ function seleccionarAvatar(avatar) {
 }
 
 
-// 📌 Cerrar Sesión
-document.getElementById("logout-btn").addEventListener("click", () => {
+// Cerrar sesión
+function logout() {
     localStorage.clear();
-    window.location.href = "login.html";
+    window.location.href = "index.html";
+}
+
+// Agregar evento al botón de cerrar sesión
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutButton = document.getElementById("logout-btn");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", logout);
+    }
 });

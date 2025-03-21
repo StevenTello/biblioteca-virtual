@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!user || !user.id) {
         alert("⚠️ Debes iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -98,7 +98,7 @@ function verCurso(id) {
 // ✅ Cerrar sesión
 function logout() {
     localStorage.clear();
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 

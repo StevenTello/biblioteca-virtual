@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!user || !user.id) {
         alert("⚠️ Debes iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -310,7 +310,7 @@ document.getElementById("buscar-recurso").addEventListener("input", function() {
 // 📌 Cerrar sesión
 function logout() {
     localStorage.clear();
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // 📌 Agregar evento al botón de cerrar sesión
