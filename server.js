@@ -62,6 +62,17 @@ app.use('/recursos', resourceRoutes);
 app.use("/", coursesRoutes);
 app.use("/usuarios", userRoutes);
 
+const dns = require("dns");
+
+dns.lookup("interchange.proxy.rlwy.net", (err, address, family) => {
+    if (err) {
+        console.error("❌ No se pudo resolver el host de MySQL:", err);
+    } else {
+        console.log("✅ Host MySQL resuelto a:", address);
+    }
+});
+
+
 // 📌 Iniciar servidor
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
