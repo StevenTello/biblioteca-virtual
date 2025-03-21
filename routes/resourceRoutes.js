@@ -3,8 +3,10 @@ const multer = require("multer");
 const mysql = require("mysql2");
 const path = require("path");
 const fs = require("fs");
-
+const db = require('../server'); // 🔥 Importar conexión global
 const router = express.Router();
+
+
 
 // 📌 Configuración de almacenamiento con Multer (para archivos, imágenes y videos)
 const storage = multer.diskStorage({
@@ -14,15 +16,6 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage });
-
-// 📌 Conexión a la base de datos
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "sa123456/",
-    database: "biblioteca_db"
-});
-
 
 // 📌 Subir recurso (archivo, imagen o video)
 router.post("/subir", upload.single("archivo"), (req, res) => {

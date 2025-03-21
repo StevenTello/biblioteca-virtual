@@ -3,6 +3,7 @@ const mysql = require('mysql2/promise');
 const path = require("path");
 const multer = require("multer");
 const router = express.Router();
+const db = require('../server'); // 🔥 Importar conexión global
 
 const storage = multer.diskStorage({
     destination: "public/uploads/",
@@ -14,16 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// 📌 Conexión a la base de datos
-const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'sa123456/',
-    database: 'biblioteca_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+
 
 //Crud
 

@@ -2,19 +2,10 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2/promise');
-
+const db = require('../server'); // 🔥 Importar conexión global
 const router = express.Router();
 
-// Conexión a la base de datos con Promises
-const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'sa123456/',
-    database: 'biblioteca_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+
 
 // 🔹 Registro de usuario
 router.post('/register', async (req, res) => {

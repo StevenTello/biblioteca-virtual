@@ -3,17 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const mysql = require('mysql2/promise');
-
-
-const db = mysql.createPool({  
-    host: 'localhost',
-    user: 'root',
-    password: 'sa123456/',
-    database: 'biblioteca_db',
-    waitForConnections: true,
-    connectionLimit: 10,  
-    queueLimit: 0
-});
+const db = require('../server'); // 🔥 Importar conexión global
 
 
 router.stack.forEach(layer => {
