@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     
     const user = JSON.parse(localStorage.getItem("user"));
@@ -31,8 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 📌 Cargar la información del módulo seleccionado
 async function cargarInformacionModulo(moduloId) {
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}`);
-
+        const response = await fetch(`${API_URL}/modulos/${moduloId}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -50,7 +51,7 @@ async function cargarInformacionModulo(moduloId) {
 // 📌 Cargar los contenidos del módulo
 async function cargarContenidosModulo(moduloId) {
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}/contenido`);
+        const response = await fetch(`${API_URL}/modulos/${moduloId}/contenido`);
         const contenidos = await response.json();
 
         const listaContenidos = document.getElementById("lista-contenidos");
@@ -82,7 +83,7 @@ async function agregarContenido() {
     if (!titulo || !tipo) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}/contenido/agregar`, {
+        const response = await fetch(`${API_URL}/modulos/${moduloId}/contenido/agregar`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ titulo, tipo, descripcion: "", archivo_url: "", contenido_html: "", orden: 1 })

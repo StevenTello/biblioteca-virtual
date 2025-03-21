@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     try {
         // ✅ Obtener cursos disponibles
-        const response = await fetch("http://localhost:3000/cursos");
+        const response = await fetch(`${API_URL}/cursos`);
         if (!response.ok) throw new Error("Error al obtener cursos");
 
         const courses = await response.json();
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         container.innerHTML = "";
 
         // ✅ Obtener los cursos a los que está suscrito el usuario
-        const resUserCourses = await fetch(`http://localhost:3000/mis-cursos/${user.id}`);
+        const resUserCourses = await fetch(`${API_URL}/mis-cursos/${user.id}`);
         if (!resUserCourses.ok) throw new Error("Error al obtener cursos del usuario");
 
         const userCourses = await resUserCourses.json();
@@ -75,7 +77,7 @@ function suscribirse(cursoId) {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
 
-    fetch("http://localhost:3000/cursos/suscribirse", {
+    fetch(`${API_URL}/cursos/suscribirse`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usuario_id: user.id, curso_id: cursoId })

@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || !user.id) {
@@ -18,21 +20,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 /* 📌 Cargar Recursos desde el servidor */
 async function cargarRecursos(filtro = "todos") {
     try {
-        const response = await fetch("http://localhost:3000/recursos");
+        const response = await fetch(`${API_URL}/recursos`);
         const recursos = await response.json();
         const contenedor = document.getElementById("lista-recursos");
         contenedor.innerHTML = "";
 
         recursos.forEach(recurso => {
-            if (filtro !== "todos" && recurso.tipo !== filtro) return; // Aplica el filtro correctamente
+            if (filtro !== "todos" && recurso.tipo !== filtro) return;
 
             const recursoItem = document.createElement("a");
             recursoItem.href = "#";
             recursoItem.className = "list-group-item list-group-item-action recurso-item";
-            
-            // ✅ Corrección: Evitar rutas duplicadas
+
             let recursoUrl = recurso.archivo_url.startsWith("/uploads/") 
-                ? `http://localhost:3000${recurso.archivo_url}` 
+                ? `${API_URL}${recurso.archivo_url}` 
                 : recurso.archivo_url;
 
             recursoItem.innerHTML = `<strong>${recurso.titulo}</strong>`;
@@ -44,7 +45,6 @@ async function cargarRecursos(filtro = "todos") {
         console.error("❌ Error al cargar recursos:", error);
     }
 }
-
 
 
 /* 📌 Filtrar recursos */
@@ -72,7 +72,6 @@ function mostrarRecursos(recursos, filtro) {
 /* 📌 Visualizar el recurso seleccionado */
 function verRecurso(tipo, url) {
     const visualizador = document.getElementById("visualizador");
-
     if (!visualizador) {
         console.error("❌ No se encontró el elemento 'visualizador'");
         return;
@@ -80,7 +79,7 @@ function verRecurso(tipo, url) {
 
     let recursoUrl = url.includes("youtube.com") || url.includes("youtu.be") 
         ? url 
-        : `http://localhost:3000/uploads/${url}`;
+        : `${API_URL}/uploads/${url}`;
 
     let contenidoHTML = "";
 
@@ -94,11 +93,9 @@ function verRecurso(tipo, url) {
             contenidoHTML = `<video controls class="video-embed"><source src="${recursoUrl}" type="video/mp4">Tu navegador no soporta la reproducción de video.</video>`;
         }
     } else if (tipo === "archivo") {
-        if (recursoUrl.endsWith(".pdf")) {
-            contenidoHTML = `<iframe src="${recursoUrl}" class="file-embed" frameborder="0"></iframe>`;
-        } else {
-            contenidoHTML = `<p>📂 <a href="${recursoUrl}" target="_blank">Abrir Archivo</a></p>`;
-        }
+        contenidoHTML = recursoUrl.endsWith(".pdf") 
+            ? `<iframe src="${recursoUrl}" class="file-embed" frameborder="0"></iframe>` 
+            : `<p>📂 <a href="${recursoUrl}" target="_blank">Abrir Archivo</a></p>`;
     }
 
     visualizador.innerHTML = contenidoHTML;

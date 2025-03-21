@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -69,7 +71,7 @@ async function subirRecurso() {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/recursos/subir", {
+        const response = await fetch(`${API_URL}/recursos/subir`, {
             method: "POST",
             body: formData
         });
@@ -91,7 +93,7 @@ async function subirRecurso() {
 //Cargar recurso
 async function cargarRecursos() {
     try {
-        const response = await fetch("http://localhost:3000/recursos");
+        const response = await fetch(`${API_URL}/recursos`);
         const recursos = await response.json();
         const lista = document.getElementById("lista-recursos");
         lista.innerHTML = "";
@@ -99,7 +101,7 @@ async function cargarRecursos() {
         recursos.forEach(recurso => {
             const archivoUrl = recurso.archivo_url.startsWith("http") 
                 ? recurso.archivo_url  // URL completa (YouTube)
-                : `http://localhost:3000/uploads/${recurso.archivo_url}`; // Archivos locales
+                : `${API_URL}/uploads/${recurso.archivo_url}`; // Archivos locales
 
             const enlace = recurso.tipo === "video" && recurso.archivo_url.includes("youtube.com")
                 ? `<a href="${archivoUrl}" target="_blank">${recurso.titulo} (Video)</a>`
@@ -135,7 +137,7 @@ async function cargarRecursos() {
 function descargarRecurso(nombreArchivo) {
     const url = nombreArchivo.startsWith("http") 
         ? nombreArchivo 
-        : `http://localhost:3000/uploads/${nombreArchivo}`;
+        : `${API_URL}/uploads/${nombreArchivo}`;
     window.open(url, "_blank");
 }
 
@@ -194,7 +196,7 @@ async function actualizarRecurso() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/recursos/editar/${id}`, {
+        const response = await fetch(`${API_URL}/recursos/editar/${id}`, {
             method: "PUT",
             body: formData
         });
@@ -232,7 +234,7 @@ function limpiarFormulario() {
 async function eliminarRecurso(id) { 
     if (!confirm("¿Estás seguro de eliminar este recurso?")) return;
     try {
-        const response = await fetch(`http://localhost:3000/recursos/${id}`, {
+        const response = await fetch(`${API_URL}/recursos/${id}`, {
             method: "DELETE"
         });
 
@@ -246,7 +248,6 @@ async function eliminarRecurso(id) {
 
 
 // 📌 Buscar recurso por título o categoría
-// 📌 Buscar recurso por título o categoría
 async function buscarRecurso() {
     const query = document.getElementById("buscar-recurso").value.trim();
     
@@ -257,7 +258,7 @@ async function buscarRecurso() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/recursos/buscar?q=${query}`);
+        const response = await fetch(`${API_URL}/recursos/buscar?q=${query}`);
         const recursos = await response.json();
 
         const lista = document.getElementById("lista-recursos");
@@ -273,7 +274,7 @@ async function buscarRecurso() {
             li.className = "list-group-item d-flex justify-content-between align-items-center";
 
             let enlace = recurso.tipo === "archivo" || recurso.tipo === "imagen"
-                ? `<a href="http://localhost:3000/uploads/${recurso.archivo_url}" target="_blank">${recurso.titulo}</a>`  
+                ? `<a href="${API_URL}/uploads/${recurso.archivo_url}" target="_blank">${recurso.titulo}</a>`  
                 : `<a href="${recurso.archivo_url}" target="_blank">${recurso.titulo} (Video)</a>`; 
 
             let botonDescarga = recurso.tipo === "video" && recurso.archivo_url.includes("youtube.com") 

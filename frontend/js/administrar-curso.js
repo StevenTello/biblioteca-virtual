@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* 📌 Función para cargar información del curso */
 async function cargarInformacionCurso(cursoId) {
     try {
-        const response = await fetch(`http://localhost:3000/cursos/${cursoId}`);
+        const response = await fetch(`${API_URL}/cursos/${cursoId}`);
         const curso = await response.json();
         document.getElementById("curso-titulo").textContent = curso.titulo;
         document.getElementById("curso-descripcion").textContent = curso.descripcion;
@@ -43,7 +45,7 @@ async function cargarInformacionCurso(cursoId) {
 /* 📌 Función para cargar los módulos del curso */
 async function cargarModulos(cursoId) {
     try {
-        const response = await fetch(`http://localhost:3000/cursos/${cursoId}/modulos`);
+        const response = await fetch(`${API_URL}/cursos/${cursoId}/modulos`);
         const modulos = await response.json();
         const listaModulos = document.getElementById("lista-modulos");
         listaModulos.innerHTML = "";
@@ -113,7 +115,7 @@ async function agregarModulo() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/cursos/${cursoId}/modulos/agregar`, {
+        const response = await fetch(`${API_URL}/cursos/${cursoId}/modulos/agregar`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ titulo, descripcion, orden: 0 })
@@ -149,7 +151,7 @@ document.getElementById("formAgregarContenido").addEventListener("submit", async
     }
 });
 
-/* 📌 Función para agregar contenido */
+
 /* 📌 Función para agregar contenido (Evitar duplicados) */
 async function agregarContenido() {
     const moduloId = document.getElementById("contenido-modulo-id").value;
@@ -183,7 +185,7 @@ async function agregarContenido() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}/contenido/agregar`, {
+        const response = await fetch(`${API_URL}/modulos/${moduloId}/contenido/agregar`, {
             method: "POST",
             body: formData,
         });
@@ -205,7 +207,7 @@ async function agregarContenido() {
 }
 
 
-/* 📌 Función para editar contenido */
+
 /* 📌 Función para editar contenido (Evitar duplicados) */
 async function editarContenido() {
     const contenidoId = document.getElementById("contenido-id").value;
@@ -238,7 +240,7 @@ async function editarContenido() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/contenido/${contenidoId}`, {
+        const response = await fetch(`${API_URL}/contenido/${contenidoId}`, {
             method: "PUT",
             body: formData,
         });
@@ -274,7 +276,7 @@ function limpiarFormulario() {
 /* 📌 Función para cargar contenido de un módulo */
 async function cargarContenido(moduloId) {
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}/contenido`);
+        const response = await fetch(`${API_URL}/modulos/${moduloId}/contenido`);
         const contenidos = await response.json();
 
         const listaContenidos = document.getElementById(`contenido-modulo-${moduloId}`);
@@ -302,7 +304,7 @@ async function eliminarContenido(contenidoId, moduloId) {
     if (!confirm("¿Estás seguro de eliminar este contenido?")) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/contenido/${contenidoId}`, { method: "DELETE" });
+        const response = await fetch(`${API_URL}/contenido/${contenidoId}`, { method: "DELETE" });
         const data = await response.json();
         alert(data.message);
         cargarContenido(moduloId);
@@ -317,7 +319,7 @@ async function eliminarModulo(moduloId) {
     if (!confirmacion) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}`, { method: "DELETE" });
+        const response = await fetch(`${API_URL}/modulos/${moduloId}`, { method: "DELETE" });
 
         if (!response.ok) {
             const errorText = await response.text(); // Captura la respuesta del servidor

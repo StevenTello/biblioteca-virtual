@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -7,22 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch(`http://localhost:3000/usuarios/${user.id}`)
+    fetch(`${API_URL}/usuarios/${user.id}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById("user-name").textContent = data.nombre;
             document.getElementById("user-email").textContent = data.email || "Correo no disponible";
             document.getElementById("user-role").textContent = data.rol === "admin" ? "Administrador" : "Usuario";
 
-            // 🔹 Cargar avatar desde la base de datos o localStorage
             const avatarUrl = data.avatar ? `/avatars/${data.avatar}` : "/avatars/default.png";
             document.getElementById("user-avatar").src = avatarUrl;
 
-            // 🔹 Guardamos en localStorage para persistencia
             user.avatar = avatarUrl;
             localStorage.setItem("user", JSON.stringify(user));
 
-            // Cargar Historial de Cursos
             cargarHistorialCursos(user.id);
         })
         .catch(error => console.error("❌ Error cargando datos de usuario:", error));
@@ -40,7 +39,7 @@ function actualizarPerfil() {
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    fetch(`http://localhost:3000/usuarios/${user.id}`, {
+    fetch(`${API_URL}/usuarios/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre: nuevoNombre })
@@ -86,7 +85,7 @@ function cambiarContraseña() {
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    fetch(`http://localhost:3000/usuarios/password/${user.id}`, {
+    fetch(`${API_URL}/usuarios/password/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ actual, nueva })
@@ -107,18 +106,15 @@ function cambiarContraseña() {
 }
 
 
-
-
 // 📌 Cargar Historial de Cursos (corregido)
 function cargarHistorialCursos(userId) {
-    fetch(`http://localhost:3000/mis-cursos/${userId}`)
+    fetch(`${API_URL}/mis-cursos/${userId}`)
         .then(response => response.json())
         .then(courses => {
             const list = document.getElementById("courses-history");
             list.innerHTML = "";
 
             courses.forEach(course => {
-                const progreso = course.progreso !== undefined ? `${course.progreso}%` : "Sin progreso";
                 const item = `<li class="list-group-item">${course.titulo}</li>`;
                 list.innerHTML += item;
             });
@@ -144,7 +140,7 @@ avatars.forEach(avatar => {
 function seleccionarAvatar(avatar) {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    fetch(`http://localhost:3000/usuarios/avatar/${user.id}`, {
+    fetch(`${API_URL}/usuarios/avatar/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ avatar })

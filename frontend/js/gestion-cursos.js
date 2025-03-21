@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
     
@@ -24,7 +26,7 @@ async function fetchCursos() {
     console.log("🔄 Cargando cursos...");
     
     try {
-        const response = await fetch("http://localhost:3000/cursos");
+        const response = await fetch(`${API_URL}/cursos`);
         const courses = await response.json();
 
         console.log("📚 Cursos obtenidos:", courses);
@@ -79,7 +81,7 @@ async function guardarCurso() {
 
     const datos = { titulo, descripcion };
     const metodo = id ? "PUT" : "POST";
-    const url = id ? `http://localhost:3000/cursos/${id}` : "http://localhost:3000/cursos";
+    const url = id ? `${API_URL}/cursos/${id}` : `${API_URL}/cursos`;
 
     try {
         const response = await fetch(url, {
@@ -115,7 +117,7 @@ async function eliminarCurso(id) {
     if (!confirm("¿Estás seguro de eliminar este curso?")) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/cursos/${id}`, { method: "DELETE" });
+        const response = await fetch(`${API_URL}/cursos/${id}`, { method: "DELETE" });
         const data = await response.json();
         alert(data.message);
 

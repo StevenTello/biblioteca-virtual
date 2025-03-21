@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
     
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 📌 Cargar Usuarios desde la API
 async function cargarUsuarios() {
     try {
-        const response = await fetch("http://localhost:3000/usuarios");
+        const response = await fetch(`${API_URL}/usuarios`);
         const usuarios = await response.json();
         const tabla = $('#tabla-usuarios').DataTable();
         tabla.clear();
@@ -63,7 +65,7 @@ async function cambiarPasswordAdmin() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/usuarios/password/admin/${id}`, {
+        const response = await fetch(`${API_URL}/usuarios/password/admin/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nueva: nuevaPassword })
@@ -102,7 +104,7 @@ async function cambiarPasswordAdmin() {
 async function eliminarUsuario(id) {
     if (!confirm("¿Estás seguro de eliminar este usuario?")) return;
     try {
-        const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+        const response = await fetch(`${API_URL}/usuarios/${id}`, {
             method: "DELETE"
         });
         const data = await response.json();
@@ -123,7 +125,7 @@ async function eliminarUsuario(id) {
 // 📌 Ver los cursos a los que un usuario está inscrito
 async function verCursos(usuarioId) {
     try {
-        const response = await fetch(`http://localhost:3000/mis-cursos/${usuarioId}`);
+        const response = await fetch(`${API_URL}/mis-cursos/${usuarioId}`);
 
         if (!response.ok) {
             throw new Error(`Error HTTP ${response.status}`);

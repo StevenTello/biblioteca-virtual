@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || user.rol !== "admin") {
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Cargar cursos y mostrarlos en tarjetas
-    fetch("http://localhost:3000/cursos")
+    fetch(`${API_URL}/cursos`)
         .then(response => response.json())
         .then(courses => {
             const container = document.getElementById("courses-container");

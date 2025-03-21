@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -53,7 +55,7 @@ function cargarCurso() {
     const params = new URLSearchParams(window.location.search);
     const cursoId = params.get("id");
 
-    fetch(`http://localhost:3000/cursos/${cursoId}`)
+    fetch(`${API_URL}/cursos/${cursoId}`)
         .then(response => response.json())
         .then(curso => {
             document.getElementById("titulo-curso").innerText = curso.titulo;
@@ -65,7 +67,7 @@ function cargarCurso() {
 /* 📌 Función para cargar información del curso */
 async function cargarInformacionCurso(cursoId) {
     try {
-        const response = await fetch(`http://localhost:3000/cursos/${cursoId}`);
+        const response = await fetch(`${API_URL}/cursos/${cursoId}`);
         if (!response.ok) throw new Error("No se pudo obtener el curso");
 
         const curso = await response.json();
@@ -79,7 +81,7 @@ async function cargarInformacionCurso(cursoId) {
 /* 📌 Función para cargar módulos del curso */
 async function cargarModulos(cursoId) {
     try {
-        const response = await fetch(`http://localhost:3000/cursos/${cursoId}/modulos`);
+        const response = await fetch(`${API_URL}/cursos/${cursoId}/modulos`);
         if (!response.ok) throw new Error("No se pudieron obtener los módulos");
 
         const modulos = await response.json();
@@ -114,7 +116,7 @@ async function verContenido(moduloId) {
     modalBody.innerHTML = ""; // Limpiar contenido previo
 
     try {
-        const response = await fetch(`http://localhost:3000/modulos/${moduloId}/contenido`);
+        const response = await fetch(`${API_URL}/modulos/${moduloId}/contenido`);
         if (!response.ok) throw new Error("No se pudo obtener el contenido del módulo");
 
         const contenidos = await response.json();
