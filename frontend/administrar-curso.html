@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Biblioteca Virtual</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- 📌 Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">🎓 Gestión de Cursos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="admin.html">🏠 Admin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gestion-cursos.html">📚 Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gestion-recursos.html">📂 Recursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gestion-usuarios.html">👥 Usuarios</a></li>
+                    <li class="nav-item"><button id="logout-btn" class="btn btn-danger">Cerrar Sesión</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center">📂 Administración del Curso</h2>
+
+        <!-- 📌 Información del curso seleccionado -->
+        <div class="card p-4 shadow-sm">
+            <h4>📜 Información del Curso</h4>
+            <p><strong>Título:</strong> <span id="curso-titulo">Cargando...</span></p>
+            <p><strong>Descripción:</strong> <span id="curso-descripcion">Cargando...</span></p>
+        </div>
+
+        <!-- 📌 Módulos del Curso -->
+        <div class="card p-4 mt-4 shadow-sm">
+            <h4>📂 Módulos del Curso</h4>
+            <button class="btn btn-success mb-3" onclick="abrirModalAgregarModulo()">➕ Agregar Módulo</button>
+            <ul id="lista-modulos" class="list-group">
+                <!-- Aquí se cargarán dinámicamente los módulos y su contenido -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 📌 Modal para agregar contenido al módulo -->
+    <div class="modal fade" id="modalAgregarContenido" tabindex="-1" aria-labelledby="modalAgregarContenidoLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgregarContenidoLabel">Agregar Contenido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgregarContenido" enctype="multipart/form-data">
+                        <input type="hidden" id="contenido-id"> <!-- Para edición -->
+                        <input type="hidden" id="contenido-modulo-id"> <!-- ID del módulo al que pertenece -->
+
+                        <div class="mb-3">
+                            <label for="contenido-titulo" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="contenido-titulo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contenido-tipo" class="form-label">Tipo</label>
+                            <select class="form-select" id="contenido-tipo" required>
+                                <option value="archivo">Archivo</option>
+                                <option value="video">Video</option>
+                                <option value="imagen">Imagen</option>
+                                <option value="actividad">Actividad</option>
+                                <option value="juego">Juego</option>
+                                <option value="test">Test</option>
+                            </select>
+                        </div>
+                                               
+                        <div class="mb-3">
+                            <label for="contenido-descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="contenido-descripcion" rows="2" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contenido-url">URL (Opcional para Videos/Imágenes en línea):</label>
+                            <input type="text" id="contenido-url" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contenido-archivo">Subir Archivo (Opcional):</label>
+                            <input type="file" id="contenido-archivo" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar Contenido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📌 Modal para agregar módulo -->
+    <div class="modal fade" id="modalAgregarModulo" tabindex="-1" aria-labelledby="modalAgregarModuloLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgregarModuloLabel">Agregar Módulo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgregarModulo">
+                        <div class="mb-3">
+                            <label for="modulo-titulo" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="modulo-titulo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modulo-descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="modulo-descripcion" rows="2" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Módulo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/administrar-curso.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

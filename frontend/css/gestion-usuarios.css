@@ -1,0 +1,169 @@
+/* 📌 Barra de Navegación */
+.navbar {
+    background: linear-gradient(135deg, #0056b3, #28a745) !important;
+    padding: 7px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* 📌 Contenedor Principal */
+.container {
+    max-width: 1200px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Reducir tamaño base */
+    background-color: #f8f9fa;
+}
+
+
+/* 📌 Centrar el título */
+h1, h2, h3 {
+    font-weight: bold;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+/* 📌 Búsqueda de cursos */
+#search-course {
+    max-width: 500px;
+    margin: auto;
+}
+
+/* 📋 Tabla */
+.table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 🎨 Botones */
+.btn-warning {
+    color: white;
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+}
+
+input, select, textarea {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+
+/*Títulos*/
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+/* 📌 Ajustar márgenes y hacer la tabla responsiva */
+.card {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* 📌 Separar la barra de búsqueda de la tabla */
+.dataTables_filter {
+    margin-bottom: 15px;
+}
+
+/* 📌 Ajustar el tamaño de los botones */
+.btn-accion {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+/* 📌 Color de los botones */
+.btn-cursos {
+    background-color: #b87e7e; /* Azul */
+    color: white;
+}
+
+.btn-password {
+    background-color: #3639fd; /* Amarillo */
+    color: white;
+}
+
+.btn-eliminar {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+}
+
+/* 📌 Mostrar el tooltip al pasar el cursor */
+.btn-accion:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transform: translateY(-120%);
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.btn-accion::after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+}

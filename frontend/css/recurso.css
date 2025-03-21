@@ -1,0 +1,150 @@
+/* 📌 Barra de Navegación */
+.navbar {
+    background: linear-gradient(135deg, #0056b3, #28a745) !important;
+    padding: 7px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* 📌 Contenedor Principal */
+.container {
+    max-width: 1200px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Reducir tamaño base */
+    background-color: #f8f9fa;
+}
+
+
+/* 📌 Centrar el título */
+h1, h2, h3 {
+    font-weight: bold;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+/* 📂 Tarjetas de Recursos */
+.recurso-card {
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background: white;
+}
+
+/* 📑 Cabecera de Tarjetas */
+.card-header {
+    font-weight: bold;
+    text-align: center;
+    background-color: #007BFF;
+    color: white;
+}
+
+/* 📜 Lista de Recursos */
+.list-group {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item:hover {
+    background: #007BFF;
+    color: white;
+}
+
+/* 📤 Visualizador */
+.visualizador {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.visualizador img, 
+.visualizador video, 
+.visualizador iframe {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* 📄 Visualizador de Archivos PDF */
+.visualizador iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 📌 Diseño Responsivo */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .recurso-card {
+        margin-bottom: 15px;
+    }
+
+    .visualizador {
+        height: 300px;
+    }
+}
+
+
+.btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+}
+
+input, select, textarea {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+
+/*Títulos*/
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,93 @@
+/* 📌 Barra de Navegación */
+.navbar {
+    background: linear-gradient(135deg, #0056b3, #28a745) !important;
+    padding: 7px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* 📌 Contenedor Principal */
+.container {
+    max-width: 1200px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Reducir tamaño base */
+    background-color: #f8f9fa;
+}
+
+
+/* 📌 Centrar el título */
+h1, h2, h3 {
+    font-weight: bold;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+/* 📌 Búsqueda de cursos */
+#search-course {
+    max-width: 500px;
+    margin: auto;
+}
+
+/* 📋 Tabla */
+.table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 🎨 Botones */
+.btn-warning {
+    color: white;
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+}
+
+input, select, textarea {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+
+/*Títulos*/
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+

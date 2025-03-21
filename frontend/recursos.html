@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Biblioteca Virtual</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/recurso.css">
+</head>
+<body>
+
+    <!-- 📌 Barra de Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">📚 Biblioteca Virtual</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">🏠 Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">👤 Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="recursos.html">📂 Recursos</a></li>
+                    <li class="nav-item"><button id="logout-btn" class="btn btn-danger">Cerrar Sesión</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 📌 Contenedor Principal -->
+    <div class="container mt-4">
+        <h2 class="text-center">📂 Recursos Adicionales</h2>
+
+        <div class="row">
+            <!-- 📑 Filtro de Recursos -->
+            <div class="col-12">
+                <label for="filtro" class="form-label">Filtrar por tipo:</label>
+                <select id="filtro" class="form-select">
+                    <option value="todos">Todos</option>
+                    <option value="archivo">Archivos</option>
+                    <option value="video">Videos</option>
+                    <option value="imagen">Imágenes</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <!-- 📜 Lista de Recursos -->
+            <div class="col-md-4">
+                <div class="card recurso-card">
+                    <div class="card-header text-center">📑 Lista de Recursos</div>
+                    <div class="card-body">
+                        <ul id="lista-recursos" class="list-group">
+                            <!-- Se cargarán dinámicamente los recursos aquí -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 📤 Visualizador -->
+            <div class="col-md-8">
+                <div class="card recurso-card">
+                    <div class="card-header text-center">📜 Visualizador</div>
+                    <div class="card-body text-center">
+                        <div id="visualizador" class="visualizador">
+                            <p>Seleccione un recurso para visualizarlo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/recursos.js"></script>
+
+</body>
+</html>
