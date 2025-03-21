@@ -15,7 +15,7 @@ const db = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     waitForConnections: true,
-    connectionLimit: 10000,
+    connectionLimit: 10,
     queueLimit: 0,
     ssl: { rejectUnauthorized: false } // Agrega SSL si es requerido por Railway
 });
@@ -63,7 +63,7 @@ app.use("/", coursesRoutes);
 app.use("/usuarios", userRoutes);
 
 // 📌 Iniciar servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`🔥 Servidor corriendo en el puerto ${PORT}`);
 });
