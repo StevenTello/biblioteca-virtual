@@ -15,8 +15,9 @@ const db = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    connectionLimit: 10000,
+    queueLimit: 0,
+    ssl: { rejectUnauthorized: true } // Agrega SSL si es requerido por Railway
 });
 
 module.exports = db;
