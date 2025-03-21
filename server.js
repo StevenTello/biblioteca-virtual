@@ -17,7 +17,7 @@ const db = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10000,
     queueLimit: 0,
-    ssl: { rejectUnauthorized: true } // Agrega SSL si es requerido por Railway
+    ssl: { rejectUnauthorized: false } // Agrega SSL si es requerido por Railway
 });
 
 module.exports = db;
@@ -33,6 +33,10 @@ async function checkDBConnection() {
     }
 }
 checkDBConnection(); // Llamar a la función para verificar la conexión
+
+app.get("/", (req, res) => {
+    res.send("🚀 API de Biblioteca Virtual funcionando correctamente en Railway");
+});
 
 // Ruta para archivos estáticos (imagenes de perfil)
 app.use("/avatars", express.static("public/avatars"));
@@ -59,6 +63,7 @@ app.use("/", coursesRoutes);
 app.use("/usuarios", userRoutes);
 
 // 📌 Iniciar servidor
-app.listen(3000, () => {
-    console.log("🔥 Servidor corriendo en http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`🔥 Servidor corriendo en el puerto ${PORT}`);
 });
