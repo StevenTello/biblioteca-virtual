@@ -163,15 +163,12 @@ function seleccionarAvatar(avatar) {
 
 
 // Cerrar sesión
-function logout() {
+async function logout() {
+    try {
+        await fetch(`${API_URL}/auth/logout`, { method: "POST" });
+    } catch (error) {
+        console.error("Error cerrando sesión:", error);
+    }
     localStorage.clear();
     window.location.href = "index.html";
 }
-
-// Agregar evento al botón de cerrar sesión
-document.addEventListener("DOMContentLoaded", () => {
-    const logoutButton = document.getElementById("logout-btn");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", logout);
-    }
-});

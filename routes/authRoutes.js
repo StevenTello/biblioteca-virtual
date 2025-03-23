@@ -93,4 +93,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// 🔹 Logout del usuario
+router.post("/logout", (req, res) => {
+    // Si usaras sesiones o JWTs en servidor, aquí podrías invalidarlas
+    console.log("🛑 Usuario cerró sesión");
+    res.status(200).json({ message: "Sesión cerrada correctamente" });
+});
+
+
 module.exports = router;

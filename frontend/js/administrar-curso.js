@@ -341,12 +341,15 @@ async function eliminarModulo(moduloId) {
 }
 
 
-
 /* 📌 Cerrar sesión */
-function logout() {
+async function logout() {
+    try {
+        await fetch(`${API_URL}/auth/logout`, { method: "POST" });
+    } catch (error) {
+        console.error("Error cerrando sesión:", error);
+    }
     localStorage.clear();
     window.location.href = "index.html";
 }
 
-document.getElementById("logout-btn").addEventListener("click", logout);
 
