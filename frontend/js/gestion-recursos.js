@@ -304,9 +304,6 @@ document.getElementById("buscar-recurso").addEventListener("input", function() {
     }
 });
 
-
-
-
 // 📌 Cerrar sesión
 async function logout() {
     try {
@@ -317,3 +314,14 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+// ✅ Exponer funciones globalmente para que funcionen con onclick desde el HTML
+window.cambiarTipo = cambiarTipo;
+window.subirRecurso = subirRecurso;
+window.descargarRecurso = descargarRecurso;
+window.cargarDatosRecurso = cargarDatosRecurso;
+window.actualizarRecurso = actualizarRecurso;
+window.limpiarFormulario = limpiarFormulario;
+window.eliminarRecurso = eliminarRecurso;
+window.buscarRecurso = buscarRecurso;
+window.logout = logout;

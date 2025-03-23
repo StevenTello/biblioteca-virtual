@@ -105,3 +105,8 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+// ✅ Exponer funciones globalmente para que funcionen con onclick desde el HTML
+window.suscribirse = suscribirse;
+window.verCurso = verCurso;
+window.logout = logout;

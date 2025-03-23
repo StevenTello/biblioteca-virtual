@@ -136,3 +136,12 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+//
+// 🔓 EXPONER FUNCIONES AL SCOPE GLOBAL
+//
+window.guardarCurso = guardarCurso;
+window.eliminarCurso = eliminarCurso;
+window.llenarFormulario = llenarFormulario;
+window.administrarCurso = administrarCurso;
+window.logout = logout;

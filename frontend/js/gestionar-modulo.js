@@ -107,3 +107,8 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+// ✅ Exponer funciones globalmente para que funcionen desde el HTML
+window.eliminarContenido = eliminarContenido;
+window.agregarContenido = agregarContenido;
+window.logout = logout;

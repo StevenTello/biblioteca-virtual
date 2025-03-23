@@ -67,3 +67,7 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+// ✅ Exponer funciones globalmente para que se puedan usar en HTML
+window.abrirCurso = abrirCurso;
+window.logout = logout;

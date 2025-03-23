@@ -238,4 +238,9 @@ async function logout() {
 }
 
 
+// ✅ Exponer funciones globalmente para que funcionen con onclick desde el HTML
+window.verContenido = verContenido;
+window.iniciarTest = iniciarTest;
+window.cerrarModalVerContenido = cerrarModalVerContenido;
+window.logout = logout;
 

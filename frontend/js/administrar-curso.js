@@ -352,4 +352,15 @@ async function logout() {
     window.location.href = "index.html";
 }
 
+// ✅ Exponer funciones al ámbito global para que funcionen con onclick en HTML
+window.abrirModalAgregarContenido = abrirModalAgregarContenido;
+window.abrirModalAgregarModulo = abrirModalAgregarModulo;
+window.agregarModulo = agregarModulo;
+window.agregarContenido = agregarContenido;
+window.editarContenido = editarContenido;
+window.limpiarFormulario = limpiarFormulario;
+window.cargarContenido = cargarContenido;
+window.eliminarContenido = eliminarContenido;
+window.eliminarModulo = eliminarModulo;
+window.logout = logout;
 

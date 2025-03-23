@@ -131,3 +131,8 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+// 📌 Exponer funciones al objeto global para uso en HTML
+window.filtrarRecursos = filtrarRecursos;
+window.verRecurso = verRecurso;
+window.logout = logout;

@@ -172,3 +172,9 @@ async function logout() {
     localStorage.clear();
     window.location.href = "index.html";
 }
+
+// 📌 Exponer funciones globalmente para su uso desde HTML
+window.actualizarPerfil = actualizarPerfil;
+window.cambiarContraseña = cambiarContraseña;
+window.seleccionarAvatar = seleccionarAvatar;
+window.logout = logout;
